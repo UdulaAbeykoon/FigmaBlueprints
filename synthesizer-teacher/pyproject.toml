@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vital-inverse-synthesis"
+version = "0.1.0"
+description = "ML system for inverse synthesis on the Vital synthesizer"
+requires-python = ">=3.10"
+dependencies = [
+    "vita",
+    "h5py>=3.9",
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "click>=8.1",
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+train = [
+    "torch>=2.0",
+    "torchaudio>=2.0",
+    "torchvision>=0.15",
+    "transformers<4.44.0",
+    "auraloss",
+    "wandb",
+    "soundfile>=0.12",
+]
+inference = [
+    "torch>=2.0",
+    "torchaudio>=2.0",
+    "torchvision>=0.15",
+    "anthropic",
+    "soundfile>=0.12",
+    "cma",
+    "auraloss",
+]
+demo = [
+    "vital-inverse-synthesis[inference]",
+    "gradio>=4.0",
+]
+preview = [
+    "textual>=0.47",
+    "sounddevice>=0.4",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+]
+all = [
+    "vital-inverse-synthesis[train,inference,demo,preview,dev]",
+]
+
+[project.scripts]
+datagen = "datagen.cli:main"
+train = "training.cli:main"
+infer = "inference.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["datagen*", "training*", "inference*"]

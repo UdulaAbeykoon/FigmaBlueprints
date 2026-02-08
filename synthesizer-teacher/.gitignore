@@ -1,0 +1,7 @@
+data/
+.claude/
+presets/
+__pycache__/
+*.pyc
+checkpoints/
+wandb/
