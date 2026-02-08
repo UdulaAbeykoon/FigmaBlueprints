@@ -188,19 +188,19 @@ function App() {
     const commitInputObject =
       params.generationType === "create"
         ? {
-            ...baseCommitObject,
-            type: "ai_create" as const,
-            parentHash: null,
-            inputs: params.prompt,
-          }
+          ...baseCommitObject,
+          type: "ai_create" as const,
+          parentHash: null,
+          inputs: params.prompt,
+        }
         : {
-            ...baseCommitObject,
-            type: "ai_edit" as const,
-            parentHash: head,
-            inputs: params.history
-              ? params.history[params.history.length - 1]
-              : { text: "", images: [] },
-          };
+          ...baseCommitObject,
+          type: "ai_edit" as const,
+          parentHash: head,
+          inputs: params.history
+            ? params.history[params.history.length - 1]
+            : { text: "", images: [] },
+        };
 
     // Create a new commit and set it as the head
     const commit = createCommit(commitInputObject);
@@ -374,7 +374,7 @@ function App() {
   }
 
   return (
-    <div className="mt-2 dark:bg-black dark:text-white">
+    <div className="h-screen overflow-hidden dark:bg-black dark:text-white">
       {IS_RUNNING_ON_CLOUD && <PicoBadge />}
       {IS_RUNNING_ON_CLOUD && (
         <TermsOfServiceDialog
@@ -383,47 +383,58 @@ function App() {
         />
       )}
       <div className="lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-96 lg:flex-col">
-        <div className="sidebar-scrollbar-stable flex grow flex-col gap-y-2 overflow-y-auto border-r border-gray-200 bg-white px-6 dark:bg-zinc-950 dark:text-white">
-          {/* Header with access to settings */}
-          <div className="flex items-center justify-between mt-10 mb-2">
-            <h1 className="text-2xl ">Screenshot to Code</h1>
-            <SettingsDialog settings={settings} setSettings={setSettings} />
+        <div className="flex grow flex-col gap-y-2 overflow-hidden bg-white p-4 dark:bg-zinc-950 dark:text-white">
+          {/* Inner container with background image */}
+          <div
+            className="flex grow flex-col gap-y-2 bg-cover bg-center bg-no-repeat rounded-lg px-6 py-4"
+            style={{ backgroundImage: "url('/assets/leftbg.png')" }}
+          >
+            {/* Header with access to settings */}
+            <div className="flex items-center justify-between mt-10 mb-2">
+              <h1 className="text-2xl ">Vision Design Mentor</h1>
+              <SettingsDialog settings={settings} setSettings={setSettings} />
+            </div>
+
+            {/* Generation settings like stack and model */}
+            <GenerationSettings settings={settings} setSettings={setSettings} />
+
+            {/* Show tip link until coding is complete */}
+            {/* {appState !== AppState.CODE_READY && <TipLink />} */}
+
+            {IS_RUNNING_ON_CLOUD && !settings.openAiApiKey && <OnboardingNote />}
+
+            {/* Rest of the sidebar when we're not in the initial state */}
+            {(appState === AppState.CODING ||
+              appState === AppState.CODE_READY) && (
+                <Sidebar
+                  showSelectAndEditFeature={showSelectAndEditFeature}
+                  doUpdate={doUpdate}
+                  regenerate={regenerate}
+                  cancelCodeGeneration={cancelCodeGeneration}
+                />
+              )}
           </div>
-
-          {/* Generation settings like stack and model */}
-          <GenerationSettings settings={settings} setSettings={setSettings} />
-
-          {/* Show tip link until coding is complete */}
-          {/* {appState !== AppState.CODE_READY && <TipLink />} */}
-
-          {IS_RUNNING_ON_CLOUD && !settings.openAiApiKey && <OnboardingNote />}
-
-          {/* Rest of the sidebar when we're not in the initial state */}
-          {(appState === AppState.CODING ||
-            appState === AppState.CODE_READY) && (
-            <Sidebar
-              showSelectAndEditFeature={showSelectAndEditFeature}
-              doUpdate={doUpdate}
-              regenerate={regenerate}
-              cancelCodeGeneration={cancelCodeGeneration}
-            />
-          )}
         </div>
       </div>
 
-      <main className="py-2 lg:pl-96">
-        {appState === AppState.INITIAL && (
-          <StartPane
-            doCreate={doCreate}
-            doCreateFromText={doCreateFromText}
-            importFromCode={importFromCode}
-            settings={settings}
-          />
-        )}
+      <main className="lg:pl-96 bg-white p-4 h-screen overflow-hidden">
+        <div
+          className="h-full bg-cover bg-center bg-no-repeat rounded-lg p-6 overflow-hidden"
+          style={{ backgroundImage: "url('/assets/mainbg.png')" }}
+        >
+          {appState === AppState.INITIAL && (
+            <StartPane
+              doCreate={doCreate}
+              doCreateFromText={doCreateFromText}
+              importFromCode={importFromCode}
+              settings={settings}
+            />
+          )}
 
-        {(appState === AppState.CODING || appState === AppState.CODE_READY) && (
-          <PreviewPane doUpdate={doUpdate} reset={reset} settings={settings} />
-        )}
+          {(appState === AppState.CODING || appState === AppState.CODE_READY) && (
+            <PreviewPane doUpdate={doUpdate} reset={reset} settings={settings} />
+          )}
+        </div>
       </main>
     </div>
   );

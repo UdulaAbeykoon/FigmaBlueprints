@@ -132,8 +132,7 @@ function UploadTab({ doCreate }: Props) {
       if (!incomingHasVideo && files.length + acceptedFiles.length > MAX_FILES) {
         const remainingSlots = MAX_FILES - files.length;
         toast.error(
-          `Only ${remainingSlots} more screenshot${
-            remainingSlots === 1 ? "" : "s"
+          `Only ${remainingSlots} more screenshot${remainingSlots === 1 ? "" : "s"
           } will be added to stay within the ${MAX_FILES}-screenshot limit.`
         );
         filesToAdd = acceptedFiles.slice(0, remainingSlots);
@@ -248,6 +247,7 @@ function UploadTab({ doCreate }: Props) {
       outline: "none",
       transition: "all 0.2s ease-in-out",
       cursor: "pointer",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
     };
 
     if (isFocused) {
@@ -357,9 +357,8 @@ function UploadTab({ doCreate }: Props) {
             ) : (
               <div
                 {...getRootProps({
-                  className: `relative rounded-lg border border-gray-200 bg-white p-4 ${
-                    isDragActive ? "ring-2 ring-blue-200" : ""
-                  }`,
+                  className: `relative rounded-lg border border-gray-200 bg-white p-4 ${isDragActive ? "ring-2 ring-blue-200" : ""
+                    }`,
                 })}
               >
                 <input {...getInputProps()} />
@@ -393,11 +392,10 @@ function UploadTab({ doCreate }: Props) {
                       <button
                         type="button"
                         onClick={() => setSelectedIndex(index)}
-                        className={`h-14 w-14 rounded-md border overflow-hidden ${
-                          selectedIndex === index
-                            ? "border-blue-500 ring-2 ring-blue-200"
-                            : "border-gray-200"
-                        }`}
+                        className={`h-14 w-14 rounded-md border overflow-hidden ${selectedIndex === index
+                          ? "border-blue-500 ring-2 ring-blue-200"
+                          : "border-gray-200"
+                          }`}
                         aria-label={`Preview screenshot ${index + 1}`}
                       >
                         <img
@@ -428,11 +426,10 @@ function UploadTab({ doCreate }: Props) {
                       open();
                     }}
                     disabled={isAtLimit}
-                    className={`h-14 w-14 rounded-md border border-dashed flex items-center justify-center flex-shrink-0 ${
-                      isAtLimit
-                        ? "border-gray-200 text-gray-300 cursor-not-allowed"
-                        : "border-gray-300 text-gray-500 hover:text-gray-700 hover:border-gray-400"
-                    }`}
+                    className={`h-14 w-14 rounded-md border border-dashed flex items-center justify-center flex-shrink-0 ${isAtLimit
+                      ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                      : "border-gray-300 text-gray-500 hover:text-gray-700 hover:border-gray-400"
+                      }`}
                     aria-label="Add more screenshots"
                   >
                     <ImageIcon className="h-5 w-5" />

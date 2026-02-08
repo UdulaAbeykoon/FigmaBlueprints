@@ -10,6 +10,7 @@ NUM_VARIANTS_VIDEO = 1
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", None)
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", None)
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", None)
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", None)
 OPENAI_BASE_URL = os.environ.get("OPENAI_BASE_URL", None)
 
 # Image generation (optional)

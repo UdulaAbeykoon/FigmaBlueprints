@@ -6,7 +6,7 @@ load_dotenv()
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import screenshot, generate_code, home, evals, figma
+from routes import screenshot, generate_code, home, evals, figma, learn_mode
 
 app = FastAPI(openapi_url=None, docs_url=None, redoc_url=None)
 
@@ -25,3 +25,4 @@ app.include_router(screenshot.router)
 app.include_router(home.router)
 app.include_router(evals.router)
 app.include_router(figma.router)
+app.include_router(learn_mode.router)

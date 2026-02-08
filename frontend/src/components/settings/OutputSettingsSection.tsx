@@ -39,7 +39,7 @@ function OutputSettingsSection({
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {Object.values(Stack).map((stack) => (
+              {[Stack.HTML_TAILWIND, Stack.HTML_CSS].map((stack) => (
                 <SelectItem key={stack} value={stack}>
                   <div className="flex items-center">
                     <StackLabel stack={stack} />

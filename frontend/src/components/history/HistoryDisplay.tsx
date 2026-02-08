@@ -40,8 +40,8 @@ export default function HistoryDisplay({ shouldDisableReverts }: Props) {
                   "flex items-center justify-between space-x-2 w-full pr-2",
                   "border-b cursor-pointer",
                   {
-                    " hover:bg-black hover:text-white": item.hash === head,
-                    "bg-slate-500 text-white": item.hash === head,
+                    " hover:bg-[#3C437B]/90 hover:text-white": item.hash === head,
+                    "bg-[#3C437B] text-white": item.hash === head,
                   }
                 )}
               >
@@ -50,8 +50,8 @@ export default function HistoryDisplay({ shouldDisableReverts }: Props) {
                   onClick={() =>
                     shouldDisableReverts
                       ? toast.error(
-                          "Please wait for code generation to complete before viewing an older version."
-                        )
+                        "Please wait for code generation to complete before viewing an older version."
+                      )
                       : setHead(item.hash)
                   }
                 >

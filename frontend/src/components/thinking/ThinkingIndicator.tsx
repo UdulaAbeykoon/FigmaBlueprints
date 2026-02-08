@@ -68,16 +68,15 @@ function ThinkingIndicator() {
 
   return (
     <div
-      className={`rounded-md mb-2 ${
-        isActive
-          ? "border-2 border-green-400 dark:border-green-500"
+      className={`rounded-md mb-2 ${isActive
+          ? "border-2 border-purple-400 dark:border-purple-500"
           : "bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700"
-      }`}
+        }`}
       style={
         isActive
           ? {
-              animation: "flash 1s ease-in-out infinite",
-            }
+            animation: "flash 1s ease-in-out infinite",
+          }
           : undefined
       }
     >
@@ -85,23 +84,23 @@ function ThinkingIndicator() {
         {`
           @keyframes flash {
             0%, 100% {
-              background-color: rgb(240 253 244);
-              border-color: rgb(74 222 128);
+              background-color: rgb(250 245 255);
+              border-color: rgb(192 132 252);
             }
             50% {
-              background-color: rgb(187 247 208);
-              border-color: rgb(34 197 94);
+              background-color: rgb(233 213 255);
+              border-color: rgb(168 85 247);
             }
           }
           @media (prefers-color-scheme: dark) {
             @keyframes flash {
               0%, 100% {
-                background-color: rgb(20 83 45 / 0.3);
-                border-color: rgb(34 197 94);
+                background-color: rgb(88 28 135 / 0.3);
+                border-color: rgb(168 85 247);
               }
               50% {
-                background-color: rgb(20 83 45 / 0.6);
-                border-color: rgb(74 222 128);
+                background-color: rgb(88 28 135 / 0.6);
+                border-color: rgb(192 132 252);
               }
             }
           }
@@ -124,8 +123,8 @@ function ThinkingIndicator() {
         <div className="flex items-center gap-2">
           {(isWaiting || isThinkingInProgress) && (
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-xs text-green-600 dark:text-green-400">
+              <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+              <span className="text-xs text-purple-600 dark:text-purple-400">
                 {isWaiting ? "starting" : "reasoning"}
               </span>
             </span>

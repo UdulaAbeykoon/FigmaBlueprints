@@ -2,15 +2,15 @@ import { useEffect } from "react";
 
 const CODING_SETTINGS = {
   title: "Coding...",
-  favicon: "/favicon/coding.png",
+  favicon: "/favicon/Schema%20Logo.png",
 };
 const DEFAULT_SETTINGS = {
-  title: "Screenshot to Code",
-  favicon: "/favicon/main.png",
+  title: "Schema",
+  favicon: "/favicon/Schema%20Logo.png",
 };
 
 const DEV_FAVICON_COLORS = {
-  default: "#22c55e",
+  default: "#3C437B",
   coding: "#ef4444",
 };
 

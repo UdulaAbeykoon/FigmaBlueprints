@@ -46,11 +46,11 @@ function Sidebar({
   const handleDrop = useCallback(async (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    
-    const files = Array.from(e.dataTransfer.files).filter(file => 
+
+    const files = Array.from(e.dataTransfer.files).filter(file =>
       file.type === 'image/png' || file.type === 'image/jpeg'
     );
-    
+
     if (files.length > 0) {
       try {
         const newImagePromises = files.map(file => fileToDataURL(file));
@@ -75,14 +75,14 @@ function Sidebar({
     head &&
     commits[head] &&
     commits[head].variants[commits[head].selectedVariantIndex].status ===
-      "complete";
+    "complete";
 
   // Check if the currently selected variant has an error
   const isSelectedVariantError =
     head &&
     commits[head] &&
     commits[head].variants[commits[head].selectedVariantIndex].status ===
-      "error";
+    "error";
 
   // Get the error message from the selected variant
   const selectedVariantErrorMessage =
@@ -131,7 +131,7 @@ function Sidebar({
           <div className="flex w-full">
             <Button
               onClick={cancelCodeGeneration}
-              className="w-full dark:text-white dark:bg-gray-700"
+              className="w-full bg-[#3C437B] hover:bg-[#3C437B]/90 text-white"
             >
               Cancel All Generations
             </Button>
@@ -183,9 +183,9 @@ function Sidebar({
             onDrop={handleDrop}
           >
             <div className="grid w-full gap-2 relative">
-              <UpdateImagePreview 
-                updateImages={updateImages} 
-                setUpdateImages={setUpdateImages} 
+              <UpdateImagePreview
+                updateImages={updateImages}
+                setUpdateImages={setUpdateImages}
               />
               <Textarea
                 ref={textareaRef}
@@ -202,16 +202,16 @@ function Sidebar({
               <div className="flex gap-2">
                 <Button
                   onClick={() => doUpdate(updateInstruction)}
-                  className="dark:text-white dark:bg-gray-700 update-btn flex-1"
+                  className="bg-[#3C437B] hover:bg-[#3C437B]/90 text-white update-btn flex-1"
                 >
                   Update <KeyboardShortcutBadge letter="enter" />
                 </Button>
-                <UpdateImageUpload 
-                  updateImages={updateImages} 
-                  setUpdateImages={setUpdateImages} 
+                <UpdateImageUpload
+                  updateImages={updateImages}
+                  setUpdateImages={setUpdateImages}
                 />
               </div>
-              
+
               {/* Drag overlay that covers the entire update area */}
               {isDragging && (
                 <div className="absolute inset-0 bg-blue-50/90 dark:bg-gray-800/90 border-2 border-dashed border-blue-400 dark:border-blue-600 rounded-md flex items-center justify-center pointer-events-none z-10">
@@ -222,7 +222,7 @@ function Sidebar({
             <div className="flex items-center justify-end gap-x-2 mt-2">
               <Button
                 onClick={regenerate}
-                className="flex items-center gap-x-2 dark:text-white dark:bg-gray-700 regenerate-btn"
+                className="flex items-center gap-x-2 bg-[#3C437B] hover:bg-[#3C437B]/90 text-white regenerate-btn"
               >
                 🔄 Regenerate
               </Button>
@@ -239,12 +239,12 @@ function Sidebar({
         {referenceImages.length > 0 && (
           <div className="flex flex-col">
             <div
-              className={classNames("relative w-[340px]", {
+              className={classNames("relative w-full overflow-hidden", {
                 scanning: appState === AppState.CODING,
               })}
             >
               {inputMode === "image" && (
-                <div className="w-[340px] rounded-md border border-gray-200 bg-white p-2">
+                <div className="w-full rounded-md border border-gray-200 bg-white p-2">
                   <div className="rounded-md border border-gray-100 bg-gray-50 p-1">
                     <img
                       className="w-full max-h-[360px] object-contain rounded"
@@ -259,11 +259,10 @@ function Sidebar({
                           key={`${image}-${index}`}
                           type="button"
                           onClick={() => setActiveReferenceIndex(index)}
-                          className={`h-14 w-14 rounded border overflow-hidden flex-shrink-0 ${
-                            activeReferenceIndex === index
-                              ? "border-blue-500 ring-2 ring-blue-200"
-                              : "border-gray-200"
-                          }`}
+                          className={`h-14 w-14 rounded border overflow-hidden flex-shrink-0 ${activeReferenceIndex === index
+                            ? "border-blue-500 ring-2 ring-blue-200"
+                            : "border-gray-200"
+                            }`}
                           aria-label={`View reference ${index + 1}`}
                         >
                           <img
@@ -292,7 +291,7 @@ function Sidebar({
                 ? "Original Video"
                 : referenceImages.length > 1
                   ? `Original Screenshots (${activeReferenceIndex + 1}/${referenceImages.length})`
-                  : "Original Screenshot"}
+                  : "Reference Image"}
             </div>
           </div>
         )}

@@ -35,10 +35,10 @@ function UnifiedInputPane({
         onValueChange={(value) => setActiveTab(value as InputTab)}
         className="w-full"
       >
-        <TabsList className="grid w-full grid-cols-4 mb-6">
+        <TabsList className="grid w-full grid-cols-4 mb-6 bg-[#F9F9F9] shadow-md rounded-lg p-1 h-auto">
           <TabsTrigger
             value="upload"
-            className="flex items-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-md py-3 text-gray-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-black transition-all"
             data-testid="tab-upload"
           >
             <UploadIcon />
@@ -46,7 +46,7 @@ function UnifiedInputPane({
           </TabsTrigger>
           <TabsTrigger
             value="url"
-            className="flex items-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-md py-3 text-gray-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-black transition-all"
             data-testid="tab-url"
           >
             <UrlIcon />
@@ -54,7 +54,7 @@ function UnifiedInputPane({
           </TabsTrigger>
           <TabsTrigger
             value="text"
-            className="flex items-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-md py-3 text-gray-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-black transition-all"
             data-testid="tab-text"
           >
             <TextIcon />
@@ -62,7 +62,7 @@ function UnifiedInputPane({
           </TabsTrigger>
           <TabsTrigger
             value="import"
-            className="flex items-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-md py-3 text-gray-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-black transition-all"
             data-testid="tab-import"
           >
             <ImportIcon />
@@ -70,22 +70,22 @@ function UnifiedInputPane({
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="upload" className="mt-0">
+        <TabsContent value="upload" className="mt-0 w-full">
           <UploadTab doCreate={doCreate} />
         </TabsContent>
 
-        <TabsContent value="url" className="mt-0">
+        <TabsContent value="url" className="mt-0 w-full">
           <UrlTab
             doCreate={doCreate}
             screenshotOneApiKey={settings.screenshotOneApiKey}
           />
         </TabsContent>
 
-        <TabsContent value="text" className="mt-0">
+        <TabsContent value="text" className="mt-0 w-full">
           <TextTab doCreateFromText={doCreateFromText} />
         </TabsContent>
 
-        <TabsContent value="import" className="mt-0">
+        <TabsContent value="import" className="mt-0 w-full">
           <ImportTab importFromCode={importFromCode} />
         </TabsContent>
       </Tabs>

@@ -41,7 +41,7 @@ function SettingsDialog({ settings, setSettings }: Props) {
 
         <div className="flex items-center space-x-2">
           <Label htmlFor="image-generation">
-            <div>DALL-E Placeholder Image Generation</div>
+            <div>Nano Banana Placeholder Image Generation</div>
             <div className="font-light mt-2 text-xs">
               More fun with it but if you want to save money, turn it off.
             </div>
@@ -106,13 +106,12 @@ function SettingsDialog({ settings, setSettings }: Props) {
                     <button
                       className="flex rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50t"
                       onClick={() => {
-                        document
-                          .querySelector("div.mt-2")
-                          ?.classList.toggle("dark"); // enable dark mode for sidebar
-                        document.body.classList.toggle("dark");
-                        document
-                          .querySelector('div[role="presentation"]')
-                          ?.classList.toggle("dark"); // enable dark mode for upload container
+                        const dialogs = document.querySelectorAll(
+                          'div[role="dialog"]'
+                        );
+                        dialogs.forEach((dialog) => {
+                          dialog.classList.toggle("dark");
+                        });
                       }}
                     >
                       Toggle dark mode

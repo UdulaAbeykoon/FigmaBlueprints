@@ -98,7 +98,12 @@ function ScreenRecorder({
   return (
     <div className="flex items-center justify-center my-3">
       {screenRecorderState === ScreenRecorderState.INITIAL && (
-        <Button onClick={startScreenRecording}>Record Screen</Button>
+        <Button
+          onClick={startScreenRecording}
+          className="bg-[#3C437B] hover:bg-[#3C437B]/90 text-white"
+        >
+          Record Screen
+        </Button>
       )}
 
       {screenRecorderState === ScreenRecorderState.RECORDING && (

@@ -17,6 +17,8 @@ import PreviewComponent from "./PreviewComponent";
 import { downloadCode } from "./download";
 import { useRef, useState } from "react";
 import { FigmaExportButton } from "./FigmaExportButton";
+import { TutorOverlay } from "../TutorOverlay";
+import { LearnModeButton } from "../LearnModeButton";
 
 function openInNewTab(code: string) {
   const newWindow = window.open("", "_blank");
@@ -39,6 +41,7 @@ function PreviewPane({ doUpdate, reset, settings }: Props) {
   const [activeTab, setActiveTab] = useState("desktop");
   const desktopRef = useRef<HTMLIFrameElement>(null);
   const mobileRef = useRef<HTMLIFrameElement>(null);
+  const [isLearnModeActive, setIsLearnModeActive] = useState(false);
 
   const currentCommit = head && commits[head] ? commits[head] : "";
   const currentCode = currentCommit
@@ -76,6 +79,14 @@ function PreviewPane({ doUpdate, reset, settings }: Props) {
                 {/* Figma Export Button */}
                 {activeTab !== "code" && (
                   <FigmaExportButton previewIframeRef={activeTab === "mobile" ? mobileRef : desktopRef} />
+                )}
+
+                {/* Learn Mode Button */}
+                {activeTab !== "code" && previewCode && (
+                  <LearnModeButton
+                    onClick={() => setIsLearnModeActive(true)}
+                    disabled={isLearnModeActive}
+                  />
                 )}
               </>
             )}
@@ -143,6 +154,14 @@ function PreviewPane({ doUpdate, reset, settings }: Props) {
           />
         </TabsContent>
       </Tabs>
+
+      {/* Learn Mode Tutor Overlay */}
+      {isLearnModeActive && previewCode && (
+        <TutorOverlay
+          htmlCode={previewCode}
+          onClose={() => setIsLearnModeActive(false)}
+        />
+      )}
     </div>
   );
 }

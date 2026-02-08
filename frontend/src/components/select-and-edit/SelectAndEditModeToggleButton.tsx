@@ -8,7 +8,8 @@ function SelectAndEditModeToggleButton() {
   return (
     <Button
       onClick={toggleInSelectAndEditMode}
-      className="flex items-center gap-x-2 dark:text-white dark:bg-gray-700 regenerate-btn"
+      className={`flex items-center gap-x-2 dark:text-white dark:bg-gray-700 regenerate-btn ${!inSelectAndEditMode ? "bg-[#3C437B] hover:bg-[#3C437B]/90 text-white" : ""
+        }`}
       variant={inSelectAndEditMode ? "destructive" : "default"}
     >
       <GiClick className="text-lg" />

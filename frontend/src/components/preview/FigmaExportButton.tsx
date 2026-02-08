@@ -199,7 +199,7 @@ export const FigmaExportButton: React.FC<Props> = ({ previewIframeRef }) => {
             const allLayers = [rootLayer, ...layers];
 
             // Send to backend
-            const response = await fetch('http://localhost:7001/api/figma/upload', {
+            const response = await fetch('http://localhost:7002/api/figma/upload', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
